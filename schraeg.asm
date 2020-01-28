@@ -20,14 +20,9 @@ mov esi, 0
 ;ist Anzahl der Argumente gleich 1
 	cmp eax, 1
 ;wenn nicht groesser als 1 beende programm
-	jle end_programm
+	jle end_program
 	pop ebx
 
-	 
-end_programm:
-	eax sysexit	;ende
-	ebx 0		;ende
-	int 80h		;Kernel
 
 print_letter:
 	push eax 
@@ -49,8 +44,10 @@ print_letter:
 	pop ebx 
 	pop eax
 
-
-    	jmp print_letter                     ; loop
+end_program:
+	mov eax, SYS_EXIT	;ende
+	mov ebx, 0		;ende
+	int 80h			;Kernel
 
 
 
