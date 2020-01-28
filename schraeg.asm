@@ -36,12 +36,13 @@ print_letter:
 	push edx
 	
 	inc esi
-;	eax syswrite
-;	ebx stdout
-;	ecx buchstabe, was du schreiben willst, +1 für kommende
-;	edx 1, 1 buchstabe
+	mov eax, SYS_WRITE
+;;mov ecx buchstabe, was du schreiben willst, +1 für kommende
+	mov ecx, ebx
+	mov ebx, STDOUT
+;;edx 1, 1 buchstabe
+	mov edx, 1
 
-	
 
 	pop edx
 	pop ecx
@@ -49,12 +50,7 @@ print_letter:
 	pop eax
 
 
-	call write_space                     ; otherwise take care of writing the spaces
-    	write_string eax, 1                  
-    	write_string newline, 1       
-    	inc eax                              
-    	inc edx                              ; increment the counter for spaces
     	jmp print_letter                     ; loop
 
-write_string:
+
 
